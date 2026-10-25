@@ -1,0 +1,10 @@
+{
+  "name": "backtranslation-functions",
+  "private": true,
+  "engines": { "node": "20" },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-functions": "^6.3.2",
+    "firebase-admin": "^13.0.2"
+  }
+}

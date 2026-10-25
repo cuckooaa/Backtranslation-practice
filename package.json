@@ -1,0 +1,11 @@
+{
+  "name": "backtranslation-practice",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "sync-materials": "node scripts/sync-materials.mjs",
+    "check": "node --check dist/app.js && node --check functions/index.js && node scripts/check-materials.mjs",
+    "prepare": "npm run sync-materials"
+  }
+}

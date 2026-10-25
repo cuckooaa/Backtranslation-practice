@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="简洁的英语回译练习工具。" />
+    <title>回译 · 英语练习</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">BACKTRANSLATION PRACTICE</p>
+          <h1>回译</h1>
+        </div>
+        <div class="topbar-actions">
+          <label class="select-label" for="material-select">文章</label>
+          <select id="material-select" aria-label="选择练习文章"></select>
+          <details class="menu">
+            <summary aria-label="更多操作">···</summary>
+            <div class="menu-panel">
+              <button id="export-button" type="button">导出当前练习</button>
+              <button id="import-button" type="button">恢复备份</button>
+              <button id="reset-button" type="button">重新练习本篇</button>
+            </div>
+          </details>
+          <input id="import-input" type="file" accept="application/json,.json" hidden />
+        </div>
+      </header>
+
+      <section class="intro" aria-label="当前练习信息">
+        <div>
+          <p id="material-source" class="muted"></p>
+          <h2 id="material-title"></h2>
+        </div>
+        <p id="save-status" class="save-status" role="status">正在准备…</p>
+      </section>
+
+      <section id="practice-panel" class="practice-grid" aria-label="回译练习">
+        <article class="reading-panel">
+          <p class="panel-label">中文</p>
+          <div id="chinese-text" class="article-text"></div>
+        </article>
+        <section class="writing-panel">
+          <label class="panel-label" for="answer-input">你的英文</label>
+          <textarea id="answer-input" placeholder="在这里写下你的英文回译…" spellcheck="true"></textarea>
+          <div class="action-row">
+            <p class="tip">完成后即可查看参考原文。</p>
+            <button id="compare-button" class="primary" type="button">完成并对照</button>
+          </div>
+        </section>
+      </section>
+
+      <section id="compare-panel" class="compare-panel" hidden aria-label="对照原文">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">COMPARE</p>
+            <h2>看看你的版本</h2>
+          </div>
+          <button id="back-to-edit-button" class="quiet" type="button">继续修改</button>
+        </div>
+        <div class="compare-grid">
+          <article class="comparison-card mine">
+            <p class="panel-label">我的英文</p>
+            <div id="answer-preview" class="article-text"></div>
+          </article>
+          <article class="comparison-card reference">
+            <p class="panel-label">参考原文</p>
+            <div id="english-text" class="article-text"></div>
+          </article>
+        </div>
+        <details class="original-chinese">
+          <summary>查看中文原文</summary>
+          <div id="chinese-compare-text" class="article-text"></div>
+        </details>
+
+        <section class="ai-section" aria-label="AI 分析与追问">
+          <div class="ai-heading">
+            <div>
+              <p class="eyebrow">AI REVIEW</p>
+              <h2>把问题问清楚</h2>
+              <p class="muted">点击分析后，材料、答案和问题会发送给 AI 服务。</p>
+            </div>
+            <button id="analyze-button" class="primary" type="button">AI 分析</button>
+          </div>
+          <p id="version-note" class="version-note" hidden></p>
+          <div id="chat-log" class="chat-log" aria-live="polite"></div>
+          <form id="chat-form" class="chat-form" hidden>
+            <label class="sr-only" for="chat-input">继续提问</label>
+            <textarea id="chat-input" rows="2" maxlength="2000" placeholder="例如：我这里为什么不能用这个表达？"></textarea>
+            <button id="chat-send" class="primary" type="submit">发送</button>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <dialog id="confirm-dialog">
+      <form method="dialog" class="dialog-content">
+        <h2 id="dialog-title">开始新练习？</h2>
+        <p id="dialog-message"></p>
+        <div class="dialog-actions">
+          <button value="cancel" type="submit">取消</button>
+          <button id="dialog-export" value="export" type="submit">导出后继续</button>
+          <button id="dialog-confirm" class="danger" value="confirm" type="submit">直接继续</button>
+        </div>
+      </form>
+    </dialog>
+    <dialog id="access-dialog">
+      <form id="access-form" class="dialog-content">
+        <h2>输入 AI 访问口令</h2>
+        <p>口令只会保留在当前页面中，用于保护你的 AI 调用额度。</p>
+        <label for="access-input">访问口令</label>
+        <input id="access-input" type="password" autocomplete="off" required />
+        <p id="access-error" class="error" role="alert"></p>
+        <div class="dialog-actions">
+          <button id="access-cancel" type="button">取消</button>
+          <button class="primary" type="submit">继续</button>
+        </div>
+      </form>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="./config.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

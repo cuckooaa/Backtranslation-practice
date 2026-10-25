@@ -1,0 +1,26 @@
+[
+  {
+    "id": "the-quiet-library",
+    "version": 1,
+    "title": "安静的图书馆",
+    "source": "原创双语练习材料",
+    "chinese": "城市图书馆的二楼有一扇常年关着的门。大多数读者经过时并不会注意到它，因为门上没有标志，旁边只有一盆长得很慢的绿植。\n\n一个雨天，管理员终于把门打开。门后不是一间被遗忘的储藏室，而是一间很小的阅览室，里面有四张旧木桌和一整面朝向公园的窗户。消息很快传开，许多人带着电脑来这里工作。\n\n但没过多久，管理员贴出了一张纸条：这个房间不提供无线网络，也不允许接听电话。有人抱怨这很不方便。后来，他们发现没有屏幕不断亮起，也没有谈话打断思路，反而更容易读完一本书。",
+    "english": "On the second floor of the city library, there was a door that remained closed throughout the year. Most readers never noticed it, because it had no sign and stood beside a houseplant that grew very slowly.\n\nOne rainy day, the librarian finally opened the door. Behind it was not a forgotten storage room, but a tiny reading room with four old wooden tables and a wall of windows facing the park. The news spread quickly, and many people brought their laptops there to work.\n\nBefore long, however, the librarian posted a notice: the room would have no wireless internet, and phone calls were not allowed. Some people complained that this was inconvenient. Later, they found that without screens constantly lighting up or conversations interrupting their thoughts, it was easier to finish a book."
+  },
+  {
+    "id": "a-small-detour",
+    "version": 1,
+    "title": "一次小小的绕路",
+    "source": "原创双语练习材料",
+    "chinese": "每天早晨，林会沿着同一条路去地铁站。这条路最快，也最熟悉：穿过一排商店，拐过两个路口，再走五分钟就到了。\n\n有一天，人行道正在维修，她不得不绕到河边。那条路多花了十分钟，可她第一次注意到水面上有一群野鸭，也看见一位老人每天在桥上给陌生人拍照。\n\n维修结束后，林本可以回到原来的路线。但每周有两三天，她仍会选择河边那条路。她并不认为绕路能解决生活中的大问题，只是发现，一点没有目的的时间，能让一天开始得不那么仓促。",
+    "english": "Every morning, Lin took the same route to the subway station. It was the fastest and most familiar way: she walked past a row of shops, turned at two intersections, and arrived five minutes later.\n\nOne day, the sidewalk was under repair, so she had to take a detour by the river. The new route added ten minutes to her trip, but for the first time she noticed a group of wild ducks on the water. She also saw an older man who stood on the bridge every day and took photographs for strangers.\n\nWhen the repair work ended, Lin could have returned to her old route. Instead, two or three days a week, she still chose the path by the river. She did not believe that a detour could solve the larger problems of life. She simply found that a little time without a purpose made the beginning of the day feel less rushed."
+  },
+  {
+    "id": "the-notebook-on-the-desk",
+    "version": 1,
+    "title": "桌上的笔记本",
+    "source": "原创双语练习材料",
+    "chinese": "在一家设计工作室里，有一本厚笔记本一直放在公共桌上。任何人都可以在里面写下一个问题、一个失败的尝试，或是一个还没有完成的想法。\n\n起初，大家很少使用它。他们担心自己的笔记看起来不够聪明，也担心别人会发现自己犯过错误。后来，一位实习生写下一个小问题：为什么客户总是看不懂第一版海报？几天后，几位同事在下面留下了不同的回答。\n\n那本笔记本渐渐变得凌乱，却越来越有用。它没有代替正式会议，但让人们明白，许多好主意并不是突然出现的答案，而是从愿意公开的问题开始的。",
+    "english": "At a design studio, a thick notebook always sat on a shared table. Anyone could use it to write down a question, a failed attempt, or an idea that was not yet complete.\n\nAt first, few people used it. They worried that their notes would not sound intelligent, and they did not want others to see that they had made mistakes. Then an intern wrote a small question: Why did clients always fail to understand the first version of a poster? Within a few days, several colleagues had added different answers below it.\n\nThe notebook gradually became messy, but it also became more useful. It did not replace formal meetings. Instead, it showed people that many good ideas do not begin as sudden answers; they begin with questions that people are willing to share."
+  }
+]
