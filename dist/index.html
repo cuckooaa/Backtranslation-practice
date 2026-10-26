@@ -39,7 +39,7 @@
 
       <section id="practice-panel" class="practice-grid" aria-label="回译练习">
         <article class="reading-panel">
-          <p class="panel-label">中文</p>
+          <p id="source-label" class="panel-label">中文</p>
           <div id="chinese-text" class="article-text"></div>
         </article>
         <section class="writing-panel">
@@ -52,46 +52,11 @@
         </section>
       </section>
 
-      <section id="compare-panel" class="compare-panel" hidden aria-label="对照原文">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">COMPARE</p>
-            <h2>看看你的版本</h2>
-          </div>
-          <button id="back-to-edit-button" class="quiet" type="button">继续修改</button>
+      <section id="compare-panel" class="compare-panel" hidden aria-label="AI 分析与追问">
+        <div class="ai-launch">
+          <p class="muted">点击后，材料、答案和问题会发送给 AI 服务。</p>
+          <button id="analyze-button" class="primary" type="button">AI 分析</button>
         </div>
-        <div class="compare-grid">
-          <article class="comparison-card mine">
-            <p class="panel-label">我的英文</p>
-            <div id="answer-preview" class="article-text"></div>
-          </article>
-          <article class="comparison-card reference">
-            <p class="panel-label">参考原文</p>
-            <div id="english-text" class="article-text"></div>
-          </article>
-        </div>
-        <details class="original-chinese">
-          <summary>查看中文原文</summary>
-          <div id="chinese-compare-text" class="article-text"></div>
-        </details>
-
-        <section class="ai-section" aria-label="AI 分析与追问">
-          <div class="ai-heading">
-            <div>
-              <p class="eyebrow">AI REVIEW</p>
-              <h2>把问题问清楚</h2>
-              <p class="muted">点击分析后，材料、答案和问题会发送给 AI 服务。</p>
-            </div>
-            <button id="analyze-button" class="primary" type="button">AI 分析</button>
-          </div>
-          <p id="version-note" class="version-note" hidden></p>
-          <div id="chat-log" class="chat-log" aria-live="polite"></div>
-          <form id="chat-form" class="chat-form" hidden>
-            <label class="sr-only" for="chat-input">继续提问</label>
-            <textarea id="chat-input" rows="2" maxlength="2000" placeholder="例如：我这里为什么不能用这个表达？"></textarea>
-            <button id="chat-send" class="primary" type="submit">发送</button>
-          </form>
-        </section>
       </section>
     </main>
 
@@ -118,6 +83,28 @@
           <button class="primary" type="submit">继续</button>
         </div>
       </form>
+    </dialog>
+    <dialog id="ai-dialog" class="ai-dialog" aria-label="AI 分析与追问">
+      <section class="ai-section">
+        <header class="ai-dialog-header">
+          <div>
+            <p class="eyebrow">AI REVIEW</p>
+            <h2>回译对话</h2>
+          </div>
+        </header>
+        <p id="version-note" class="version-note" hidden></p>
+        <div class="ai-tools">
+          <button id="reanalyze-button" class="quiet" type="button" hidden>重新分析</button>
+          <button id="snapshot-button" class="quiet" type="button" hidden>查看分析时的答案</button>
+        </div>
+        <pre id="snapshot-text" class="snapshot-text" hidden></pre>
+        <div id="chat-log" class="chat-log" aria-live="polite"></div>
+        <form id="chat-form" class="chat-form" hidden>
+          <label class="sr-only" for="chat-input">继续提问</label>
+          <textarea id="chat-input" rows="2" maxlength="2000" placeholder="继续提问…"></textarea>
+          <button id="chat-send" class="send-button" type="submit" aria-label="发送问题" title="发送问题">↑</button>
+        </form>
+      </section>
     </dialog>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <script src="./config.js"></script>

@@ -1,7 +1,16 @@
 node_modules/
-functions/node_modules/
-.firebase/
-firebase-debug*.log
-functions/.env*
+worker/.dev.vars
+worker/.dev.vars.*
+!worker/.dev.vars.example
+worker/.wrangler/
+.wrangler-config/
 dist/config.js
 !dist/config.example.js
+# Personal textbook-derived content: do not commit or publish these files.
+tmp/
+/materials.json
+# dist/materials.json
+# worker/src/materials.generated.js
+README-private.md
+SPEC-CLOUDFLARE.md
+SPEC.md
