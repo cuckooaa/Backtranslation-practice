@@ -8,7 +8,7 @@ dist/config.js
 !dist/config.example.js
 # Personal textbook-derived content: do not commit or publish these files.
 tmp/
-/materials.json
+# /materials.json
 # dist/materials.json
 # worker/src/materials.generated.js
 README-private.md
