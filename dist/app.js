@@ -4,6 +4,7 @@ const SCHEMA_VERSION = 1;
 const MAX_FOLLOW_UPS = 20;
 const MAX_MESSAGES = 1 + MAX_FOLLOW_UPS * 2;
 const MAX_BACKUP_BYTES = 1024 * 1024;
+const MAX_AI_ANSWER_CHARS = 10000;
 const $ = (id) => document.getElementById(id);
 const els = Object.fromEntries(["material-select", "material-title", "material-source", "save-status", "source-label", "chinese-text", "answer-input", "practice-panel", "compare-panel", "compare-button", "analyze-button", "ai-dialog", "reanalyze-button", "chat-log", "chat-form", "chat-input", "chat-send", "export-button", "import-button", "import-input", "reset-button", "confirm-dialog", "dialog-title", "dialog-message", "dialog-export", "dialog-confirm", "access-dialog", "access-form", "access-input", "access-cancel", "version-note", "snapshot-button", "snapshot-text", "toast"].map((id) => [id, $(id)]));
 
@@ -33,7 +34,9 @@ function validateState(raw) {
     if (!m || m.role !== (index % 2 === 0 ? "assistant" : "user") || !safeText(m.content, 12000)) return null;
     return { role: m.role, content: m.content };
   });
-  const answer = safeText(raw.answer); const analysisSnapshot = safeText(raw.analysisSnapshot); const chatDraft = safeText(raw.chatDraft, 2000); const updatedAt = safeText(raw.updatedAt, 100);
+  // Local notes are not subject to the AI request's answer length limit.
+  // The total serialized backup remains bounded by MAX_BACKUP_BYTES below.
+  const answer = safeText(raw.answer, MAX_BACKUP_BYTES); const analysisSnapshot = safeText(raw.analysisSnapshot, MAX_BACKUP_BYTES); const chatDraft = safeText(raw.chatDraft, 2000); const updatedAt = safeText(raw.updatedAt, 100);
   if (messages.includes(null) || answer === null || analysisSnapshot === null || chatDraft === null || updatedAt === null || (!messages.length && analysisSnapshot) || (messages.length && !analysisSnapshot) || new Blob([JSON.stringify(raw)]).size > MAX_BACKUP_BYTES) return null;
   return { schemaVersion: SCHEMA_VERSION, materialId: material.id, materialVersion: material.version, phase: raw.phase, answer, analysisSnapshot, messages, chatDraft, updatedAt };
 }
@@ -210,11 +213,13 @@ function analyze() {
     } finally { if (serial === requestSerial) { activeRequest = null; streamingText = ""; els["analyze-button"].disabled = false; render(); } }
   };
   if (!state.answer.trim()) return toast("先写一点英文再分析吧");
+  if (state.answer.length > MAX_AI_ANSWER_CHARS) return toast("AI 分析最多支持 10,000 个字符。请先导出备份，再精简分析内容；本地保存和恢复不受此限制。");
   const start = () => requestAccess(run);
   if (state.messages.length) openConfirm({ title: "重新分析？", message: "当前 AI 会话会在新的分析成功后替换。你可以先导出备份。", onConfirm: start }); else start();
 }
 function sendChat(event) {
   event.preventDefault(); const question = els["chat-input"].value.trim(); if (!question || !state.messages.length || activeRequest) return;
+  if (state.analysisSnapshot.length > MAX_AI_ANSWER_CHARS) return toast("这份会话的分析原稿超过 AI 长度限制。请先导出备份，再精简答案并重新分析。");
   if (state.messages.filter((message) => message.role === "user").length >= MAX_FOLLOW_UPS) return toast("本次会话已达到 20 次追问。可以重新分析开启新会话。");
   requestAccess(async () => {
     const startingState = state; const serial = ++requestSerial; const snapshot = state.analysisSnapshot; const priorMessages = state.messages.map((message) => ({ ...message })); els["chat-send"].disabled = true;
